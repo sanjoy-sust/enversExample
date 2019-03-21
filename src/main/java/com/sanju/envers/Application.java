@@ -57,6 +57,10 @@ public class Application {
             employeeService.delete(employeeToDelete);
             System.out.println("Data deleted.");
         }
+
+        /*Update Department*/
+        updateDepartment(departmentService);
+        updateEmployeeData(employeeService, departmentService);
         /*Get all revisions of employee entity*/
         System.out.println("\n\n\nEmployee Audit data Reading......................................");
         auditDataRead(Employee.class, configApplicationContext);
@@ -72,6 +76,21 @@ public class Application {
         department.setResponsibility(currentTime + "R&D");
         Department savedDepartment = departmentService.save(department);
         Employee employee = new Employee();
+        employee.setEmail(currentTime + "@sanju.com");
+        employee.setName("EnversTEST " + currentTime);
+        employee.setAddress("EnversAddress " + currentTime);
+        employee.setDepartment(savedDepartment);
+        employeeService.save(employee);
+    }
+
+    private static void updateEmployeeData(EmployeeService employeeService, DepartmentService departmentService) {
+        long currentTime = System.currentTimeMillis();
+        Employee employee = employeeService.getEmployeeById(1);
+        Department department = employee.getDepartment();
+        department.setName("Development-byEmployeeUpdate");
+        department.setResponsibility(currentTime + "R&DUpdateBY");
+        Department savedDepartment = departmentService.save(department);
+        employee.setDepartment(null);
         employee.setEmail(currentTime + "@sanju.com");
         employee.setName("EnversTEST " + currentTime);
         employee.setAddress("EnversAddress " + currentTime);
@@ -112,5 +131,14 @@ public class Application {
             RevisionType revisionType = (RevisionType) objects[2];
             System.out.println("Operation      : " + revisionType.name());
         });
+    }
+
+    private static Department updateDepartment(DepartmentService departmentService){
+
+        Department department = departmentService.getDepartmentById(2);
+        department.setName("Development");
+        department.setResponsibility(System.currentTimeMillis() + "R&D");
+        Department savedDepartment = departmentService.save(department);
+        return savedDepartment;
     }
 }

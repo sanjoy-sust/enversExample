@@ -1,6 +1,5 @@
 package com.sanju.envers.config;
 
-import org.h2.Driver;
 import org.hibernate.boot.SchemaAutoTooling;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.dialect.MariaDB10Dialect;
@@ -10,9 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -24,7 +21,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.SharedCacheMode;
 import javax.persistence.ValidationMode;
 import javax.sql.DataSource;
-import java.util.Map;
 import java.util.Properties;
 
 @Configuration
@@ -57,6 +53,8 @@ public class AppConfig {
         properties.put(AvailableSettings.SHOW_SQL,"true");
         properties.put("org.hibernate.envers.audit_table_suffix",
                 "_aud");
+        properties.put("hibernate.listeners.envers.autoRegister",false);
+        properties.put("hibernate.envers.autoRegisterListeners",false);
         factory.setJpaProperties(properties);
         factory.setJpaVendorAdapter(adapter);
         factory.setDataSource(dataSource());
@@ -82,4 +80,5 @@ public class AppConfig {
         executor.initialize();
         return executor;
     }
+
 }
