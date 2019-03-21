@@ -23,7 +23,7 @@ public class CustomEnversPreUpdateEventListenerImpl extends
             System.out.println("Department should be assign for an employee.");
             return false;
         }
-
+        System.out.println("On Pre Update event");
         return super.onPreUpdate(event);
     }
 

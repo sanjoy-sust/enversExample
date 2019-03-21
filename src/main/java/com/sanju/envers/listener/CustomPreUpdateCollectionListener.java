@@ -11,6 +11,6 @@ public class CustomPreUpdateCollectionListener extends EnversPreCollectionUpdate
 
     @Override
     public void onPreUpdateCollection(PreCollectionUpdateEvent event) {
-
+        System.out.println("On Pre update collection event");
     }
 }

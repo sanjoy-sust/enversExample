@@ -6,6 +6,6 @@ import org.hibernate.event.spi.PostCollectionUpdateEventListener;
 public class CustomPostUpdateCollectionListener implements PostCollectionUpdateEventListener {
     @Override
     public void onPostUpdateCollection(PostCollectionUpdateEvent event) {
-
+        System.out.println("On POST update collection event");
     }
 }

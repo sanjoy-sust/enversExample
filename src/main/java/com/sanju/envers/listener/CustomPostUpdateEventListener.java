@@ -17,6 +17,7 @@ public class CustomPostUpdateEventListener extends EnversPostUpdateEventListener
             System.out.println("Department should be assign for an employee.");
 
         }
+        System.out.println("On Post Insert event");
         super.onPostUpdate(event);
     }
 }
