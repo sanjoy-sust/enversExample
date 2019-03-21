@@ -22,6 +22,10 @@ public class EnversListenerConfiguration {
         EventListenerRegistry registry = sessionFactory.getServiceRegistry().getService(EventListenerRegistry.class);
         EnversService enversService = sessionFactory.getServiceRegistry().getService(EnversService.class);
 
+        registry.getEventListenerGroup(EventType.PRE_INSERT).appendListener(new CustomEnversPreInsertEventListenerImpl());
         registry.getEventListenerGroup(EventType.PRE_UPDATE).appendListener(new CustomEnversPreUpdateEventListenerImpl(enversService));
+        registry.getEventListenerGroup(EventType.POST_UPDATE).appendListener(new CustomPostUpdateEventListener(enversService));
+        registry.getEventListenerGroup(EventType.PRE_COLLECTION_UPDATE).appendListener(new CustomPreUpdateCollectionListener(enversService));
+        registry.getEventListenerGroup(EventType.POST_COLLECTION_UPDATE).appendListener(new CustomPostUpdateCollectionListener());
     }
 }
