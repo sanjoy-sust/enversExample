@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class CustomRevisionListener implements RevisionListener {
     @Override
     public void newRevision(Object revisionEntity) {
         CustomRevisionEntity customRevisionEntity = (CustomRevisionEntity) revisionEntity;
-        AnnotationConfigApplicationContext configApplicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-        EntityManagerFactory emf = configApplicationContext.getBean(EntityManagerFactory.class);
+
+        EntityManagerFactory emf = ContextLookup.getApplicationContext().getBean(EntityManagerFactory.class);
         AuditReader auditReader = AuditReaderFactory.get(emf.createEntityManager());
 
         AuditQuery query = auditReader.createQuery()

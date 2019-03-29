@@ -28,7 +28,6 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "emf",basePackages = {"com.sanju.envers.repository"})
 @EnableAsync
-@EnableJpaAuditing
 public class AppConfig {
 
     @Bean

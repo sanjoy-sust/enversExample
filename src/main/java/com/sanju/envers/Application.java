@@ -27,7 +27,7 @@ public class Application {
 
 
         /*Insert data to test*/
-        dataInsertion(employeeService, departmentService);
+    /*    dataInsertion(employeeService, departmentService);
 
 
         employeeService.getEmployees().forEach(employe -> {
@@ -40,8 +40,8 @@ public class Application {
             System.out.println("Responsibilty = " + employe.getDepartment().getResponsibility());
             System.out.println("Version       = " + employe.getVersion());
         });
-
-        /*Update Data for audit*/
+*/
+   /*     *//*Update Data for audit*//*
         System.out.println("Updating data......");
         Employee employeeToUpdate = employeeService.getEmployeeById(1);
         long updateTime = System.currentTimeMillis();
@@ -49,17 +49,17 @@ public class Application {
         employeeService.update(employeeToUpdate.getId(), employeeToUpdate);
         System.out.println("Updating completed.");
 
-        /*Delete auditing test*/
+        *//*Delete auditing test*//*
         System.out.println("Deleting data......");
         List<Employee> employees = employeeService.getEmployees();
         if(employees.size()>2) {
             Employee employeeToDelete = employees.get(2);
             employeeService.delete(employeeToDelete);
             System.out.println("Data deleted.");
-        }
+        }*/
 
         /*Update Department*/
-        updateDepartment(departmentService);
+        //updateDepartment(departmentService);
         updateEmployeeData(employeeService, departmentService);
         /*Get all revisions of employee entity*/
         System.out.println("\n\n\nEmployee Audit data Reading......................................");
