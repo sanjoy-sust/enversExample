@@ -10,6 +10,16 @@ public class ContextLookup implements ApplicationContextAware {
 
     private static ApplicationContext sApplicationContext;
 
+    public static Object getCurrentEntity() {
+        return currentEntity;
+    }
+
+    public static void setCurrentEntity(Object currentEntity) {
+        ContextLookup.currentEntity = currentEntity;
+    }
+
+    private static Object currentEntity;
+
     @Override
     public void setApplicationContext( ApplicationContext aApplicationContext )
             throws BeansException {
@@ -37,4 +47,8 @@ public class ContextLookup implements ApplicationContextAware {
         }
         return null;
     }
+
+
+
+
 }

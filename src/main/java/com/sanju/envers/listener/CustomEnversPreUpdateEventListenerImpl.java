@@ -1,5 +1,6 @@
 package com.sanju.envers.listener;
 
+import com.sanju.envers.entity.Department;
 import com.sanju.envers.entity.Employee;
 import org.apache.log4j.Logger;
 import org.hibernate.envers.boot.internal.EnversService;
@@ -18,6 +19,14 @@ public class CustomEnversPreUpdateEventListenerImpl extends
 
     @Override
     public boolean onPreUpdate(PreUpdateEvent event) {
+
+        if(event.getEntity() instanceof Employee){
+            ContextLookup.setCurrentEntity(new Employee());
+        }
+
+        if(event.getEntity() instanceof Department){
+            ContextLookup.setCurrentEntity(new Department());
+        }
         if (event.getEntity() instanceof Employee
                 && ((Employee) event.getEntity()).getDepartment() == null) {
             System.out.println("Department should be assign for an employee.");
