@@ -27,7 +27,7 @@ public class Application {
 
 
         /*Insert data to test*/
-    /*    dataInsertion(employeeService, departmentService);
+        dataInsertion(employeeService, departmentService);
 
 
         employeeService.getEmployees().forEach(employe -> {
@@ -40,7 +40,7 @@ public class Application {
             System.out.println("Responsibilty = " + employe.getDepartment().getResponsibility());
             System.out.println("Version       = " + employe.getVersion());
         });
-*/
+
    /*     *//*Update Data for audit*//*
         System.out.println("Updating data......");
         Employee employeeToUpdate = employeeService.getEmployeeById(1);
